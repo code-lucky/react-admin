@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
     // 业务请求成功
     const hasSuccess = data && (code === 200 || code === 201);
     if (hasSuccess) {
-      return res;
+      return data;
     }
 
     // 业务请求错误

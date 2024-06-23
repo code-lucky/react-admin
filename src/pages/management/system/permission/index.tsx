@@ -1,4 +1,4 @@
-import { Button, Card, Popconfirm } from 'antd';
+import { Button, Card, Popconfirm, message } from 'antd';
 import Table, { ColumnsType } from 'antd/es/table';
 import { isNil } from 'ramda';
 import { useState } from 'react';
@@ -25,10 +25,10 @@ const defaultPermissionValue: Permission = {
   status: BasicStatus.ENABLE,
   type: PermissionType.CATALOGUE,
 };
+
 export default function PermissionPage() {
   const permissions = useUserPermission();
   const { t } = useTranslation();
-
   const [permissionModalProps, setPermissionModalProps] = useState<PermissionModalProps>({
     formValue: { ...defaultPermissionValue },
     title: 'New',
@@ -41,8 +41,8 @@ export default function PermissionPage() {
         // 更新
         console.log('更新');
       }else{
-        const res =await createMenu.CreateMenu(data);
-        console.log('res', res)
+        const result = await createMenu.CreateMenu(data);
+        message.success(result)
       }
 
       setPermissionModalProps((prev) => ({ ...prev, show: false }));
